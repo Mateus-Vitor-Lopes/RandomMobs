@@ -1,8 +1,9 @@
 package com.byla.mobStats;
 
 import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Mob;
+import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +14,7 @@ public class MobStatsManager {
     private final Map<UUID, MobStats> mobsStats = new HashMap<>();
 
     public void atribuirStatsMob(LivingEntity entidade) {
-        if (!(entidade instanceof Mob)) {
-            return;
-        }
+        if (entidade instanceof Player) return;
 
         UUID uuid = entidade.getUniqueId();
         MobStats stats = new MobStats();
@@ -27,14 +26,14 @@ public class MobStatsManager {
 
     }
 
-
     private void aplicarStats(LivingEntity entidade, MobStats stats) {
 
-        double vidaAtual = entidade.getHealth();
-        double novaVida = vidaAtual + stats.getVida();
+        AttributeInstance vidaMaxima = entidade.getAttribute(Attribute.MAX_HEALTH);
 
-        entidade.getAttribute(Attribute.MAX_HEALTH).setBaseValue(novaVida);
+        double vidaBase = vidaMaxima.getBaseValue();
+        double novaVida = vidaBase * stats.getVida();
 
+        vidaMaxima.setBaseValue(novaVida);
         entidade.setHealth(novaVida);
     }
 
@@ -44,14 +43,16 @@ public class MobStatsManager {
             double velocidadeCustomizada = velocidadeBase * multiplicador;
 
             entidade.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(velocidadeCustomizada);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
     }
 
     private void aplicarArmadura(LivingEntity entidade, double armadura) {
         try {
             entidade.getAttribute(Attribute.ARMOR).setBaseValue(armadura);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
     }
 
@@ -59,18 +60,11 @@ public class MobStatsManager {
         try {
             if (entidade.getAttribute(Attribute.SCALE) == null) return;
 
-            double tamanhoFinal = Math.max(0.4, Math.min(3.0, multiplicador));
+            double tamnahoBase = 1;
+            double tamanhoFinal = tamnahoBase * multiplicador;
             entidade.getAttribute(Attribute.SCALE).setBaseValue(tamanhoFinal);
 
         } catch (Exception e) {}
-    }
-
-    public MobStats obterStats(LivingEntity entidade) {
-        return mobsStats.get(entidade.getUniqueId());
-    }
-
-    public void removerTodosStats() {
-        mobsStats.clear();
     }
 
 }

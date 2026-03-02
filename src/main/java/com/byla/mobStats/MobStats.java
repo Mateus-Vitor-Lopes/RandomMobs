@@ -18,7 +18,7 @@ public class MobStats {
     }
 
     private double gerarMultiplicador() {
-        double[] opcoes = {0.5, 0.75, 1.0, 1.5, 2.0};
+        double[] opcoes = {0.5, 0.75, 1.0, 1.5};
         return opcoes[(int) (Math.random() * opcoes.length)];
     }
 
