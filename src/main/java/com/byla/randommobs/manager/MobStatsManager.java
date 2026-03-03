@@ -1,10 +1,10 @@
-package com.byla.mobStats;
+package com.byla.randommobs.manager;
 
+import com.byla.randommobs.mob.MobStats;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;

@@ -1,8 +1,8 @@
-package com.byla.randomMobs;
+package com.byla.randommobs;
 
-import com.byla.mobStats.MobDamageListener;
-import com.byla.mobStats.MobSpawnListener;
-import com.byla.mobStats.MobStatsManager;
+import com.byla.randommobs.listener.MobDamageListener;
+import com.byla.randommobs.listener.MobSpawnListener;
+import com.byla.randommobs.manager.MobStatsManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class RandomMobs extends JavaPlugin {
@@ -30,13 +30,7 @@ public final class RandomMobs extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        if (manager != null) {
-            manager.removerTodosStats();
-        }
-        getLogger().info("§cMobStats desativado!");
-    }
 
-    public MobStatsManager getManager() {
-        return manager;
+        getLogger().info("§cMobStats desativado!");
     }
 }
