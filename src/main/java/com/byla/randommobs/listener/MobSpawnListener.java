@@ -1,5 +1,6 @@
-package com.byla.mobStats;
+package com.byla.randommobs.listener;
 
+import com.byla.randommobs.manager.MobStatsManager;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;

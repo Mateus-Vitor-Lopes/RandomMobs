@@ -1,4 +1,4 @@
-package com.byla.mobStats;
+package com.byla.randommobs.mob;
 
 public class MobStats {
     private double vida;
