@@ -5,26 +5,17 @@ public class MobStats {
     private double dano;
     private double velocidade;
     private double tamanho;
-    private double armadura;
 
-    public MobStats() {
+    public MobStats(double vida, double dano, double velocidade, double tamanho) {
 
-        this.vida = gerarMultiplicador();
-        this.dano = gerarMultiplicador();
-        this.velocidade = gerarMultiplicador();
-        this.tamanho = gerarMultiplicador();
-        this.armadura = gerarMultiplicador();
+        this.vida = vida;
+        this.dano = dano;
+        this.velocidade = velocidade;
+        this.tamanho = tamanho;
 
     }
 
-    private double gerarMultiplicador() {
-        double[] opcoes = {0.5, 0.75, 1.0, 1.5};
-        return opcoes[(int) (Math.random() * opcoes.length)];
-    }
-
-    public double getVida() {
-        return vida;
-    }
+    public double getVida() {return vida;}
 
     public double getDano() {
         return dano;
@@ -38,17 +29,11 @@ public class MobStats {
         return tamanho;
     }
 
-    public double getArmadura() {
-        return armadura;
-    }
+    public void setVida(double vida) {this.vida = vida;}
 
-    @Override
-    public String toString() {
-        return "MobStats{" +
-                "vida=" + String.format("%.1f", vida) + "x" +
-                ", dano=" + String.format("%.1f", dano) + "x" +
-                ", velocidade=" + String.format("%.1f", velocidade) + "x" +
-                ", armadura=" + String.format("%.1f", armadura * 100) + "%" +
-                '}';
-    }
+    public void setDano(double dano) {this.dano = dano;}
+
+    public void setVelocidade(double velocidade) {this.velocidade = velocidade;}
+
+    public void setTamanho(double tamanho) {this.tamanho = tamanho;}
 }
